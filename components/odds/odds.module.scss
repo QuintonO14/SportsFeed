@@ -1,0 +1,129 @@
+$primary: #201c1c;
+$secondary: #4758d6;
+$tertiary: #e1811f;
+$quarternary: #eeeded;
+
+.bookie {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: Barlow Condensed;
+
+    h4 {
+        font-family: Russo One;
+        font-weight: 100;
+    }
+
+    small {
+        margin-bottom: 1rem;
+    }
+  }
+  
+.carousel {
+    background-color: $quarternary;
+    color: $primary;
+    border-radius: 10px;
+    height: 50vh !important;
+    width: 90%;
+    margin: auto;
+    margin-bottom: 1rem;
+    box-shadow: inset 0px 0px 10px 1px $tertiary;
+
+    @media(min-width: 1000px){
+        height: 50vh !important;
+    }
+}
+
+.odds {
+    width: 30%;
+}
+  
+
+.oddsBookies {
+    width: 100%;
+    height: fit-content;
+}
+  
+.oddsContainer {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid $quarternary;
+    justify-content: center;
+    align-items: center;
+    width: 95%;
+    margin: 1rem auto;
+    color: $quarternary;
+    background-color: $secondary;
+    border-radius: 5px;
+    padding-bottom: 2rem;
+
+    h2 {
+        font-family: Russo One;
+        font-weight: 400;
+    }
+
+    h3 {
+        font-weight: bolder;
+        font-size: 1.3rem;
+    }
+   
+}
+  
+  .oddsTeams {
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly;
+    flex-direction: column;
+    align-items: center;
+}
+  
+
+  
+.outcomes {
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly;
+
+    div {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 70%;
+    }
+
+    strong {
+        text-align: center;
+        font-size: 1.2rem;
+    }
+
+    p {
+        display: flex;
+        width: 100%;
+        justify-content: space-evenly;
+        font-family: Barlow Condensed, sans-serif;
+        font-weight: bold;
+    }
+}
+  
+.primary {
+    min-height: 100vh;
+    padding: 4rem 0;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.spacer {
+    padding-top: 10vh;
+}
+  
+.updated {
+    padding: 0.5rem 0;
+}
+
+
+  
