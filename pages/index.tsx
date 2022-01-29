@@ -1,11 +1,13 @@
 import type { GetServerSideProps, NextPage } from 'next'
 import styles from '../styles/Home.module.scss'
+import dynamic from 'next/dynamic'
 import axios from 'axios'
 import { useState } from 'react'
-import Odds from '../components/odds/odds'
 import { FaBars } from 'react-icons/fa'
-import Article from '../components/news/article'
 import useMediaQuery from '../hooks/useMediaQuery'
+import Image from 'next/image'
+const Article = dynamic(() => import('../components/news/article'))
+const Odds = dynamic(() => import('../components/odds/odds'))
 
 interface Source {
   id: string,
@@ -48,7 +50,9 @@ const Home: NextPage<{news: Article, odds: Odds}> = ({news, odds}) => {
   return (
     <div className={styles.app}>
       <div className={styles.navbar}>
-       <img src="/logo.png" alt="a" className={styles.logo} />
+        <div>
+        <Image src="/logo.png" alt="logo" width="100px" height="50px" className={styles.logo} />
+        </div>
         <div style={toggled === true ? {display: 'block'} : undefined}>
           <a href="#" onClick={() => changeTab('news')}>News</a>
           <a href="#" onClick={() => changeTab('odds')}>Odds</a>
@@ -80,13 +84,14 @@ export const getServerSideProps: GetServerSideProps = async(context) => {
   const markets = 'h2h,spreads,totals'
   const oddsFormat = 'american'
   const dateFormat = 'iso'
+  let odds
   const news: Article = await axios('https://newsapi.org/v2/top-headlines', {
       method: 'GET',
       params: {
         apiKey: process.env.NEWS_KEY,
         sources: `bbc-sport,bleacher-report,espn,espn-cric-info,football-italia,
         four-four-two,fox-sports,nfl-news,nhl-news,talksport,the-sport-bible`,
-        pageSize: 50
+        pageSize: 25
       }
   }).then((res) => {
     return res.data.articles
@@ -94,7 +99,8 @@ export const getServerSideProps: GetServerSideProps = async(context) => {
     return err
   })
 
-  const odds = await axios('https://api.the-odds-api.com/v4/sports/upcoming/odds', {
+  if(news) {
+    odds = await axios('https://api.the-odds-api.com/v4/sports/upcoming/odds', {
     params: {
       apiKey,
       regions,
@@ -102,12 +108,13 @@ export const getServerSideProps: GetServerSideProps = async(context) => {
       oddsFormat,
       dateFormat
     }
-  }).then(response => {
-    console.log('Remaining requests', response.headers['x-requests-remaining'])
-    console.log('Used requests', response.headers['x-requests-used'])
-    response.data.length = 15
-    return response.data
-  })
+    }).then(response => {
+      console.log('Remaining requests', response.headers['x-requests-remaining'])
+      console.log('Used requests', response.headers['x-requests-used'])
+      response.data.length = 15
+      return response.data
+    })
+  }
 
   return {
     props: {

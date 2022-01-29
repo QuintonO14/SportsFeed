@@ -3,7 +3,7 @@
     "short_name": "SF",
     "theme_color": "#ffffff",
     "background_color": "#201c1c",
-    "display": "fullscreen",
+    "display": "standalone",
     "scope": "/",
     "start_url": "/",
     "icons": [
@@ -35,7 +35,8 @@
       {
         "src": "/android-icon-192x192.png",
         "sizes": "192x192",
-        "type": "image/png"
+        "type": "image/png",
+        "purpose" : "any maskable"
       },
       {
         "src": "/android-chrome-512x512.png",

@@ -2,6 +2,7 @@ import { Key } from 'react'
 import styles from './news.module.scss'
 import { HiArrowNarrowRight } from 'react-icons/hi'
 import { motion } from 'framer-motion'
+import Image from 'next/image'
 
 const Article = (props: any) => {
     return (
@@ -23,13 +24,15 @@ const Article = (props: any) => {
             <h2>{article.title}</h2>
             <small>{date} {article.author}</small>
             <p>{article.description}</p>
-            <img 
-            onError={({ currentTarget }) => {
-              currentTarget.onerror = null;
-              currentTarget.src="/placeholder.png"
-            }}
-            src={article.urlToImage} alt="img" />
-            <a href={article.url}>Visit <HiArrowNarrowRight style={{marginLeft: '0.5rem'}}/></a>
+            <div className={styles.image}>
+            <Image src={article.urlToImage} 
+            alt="i" 
+            placeholder="blur"
+            blurDataURL={article.urlToImage}
+            layout='fill'
+            quality={90} />
+            </div>
+            <a href={article.url} target="_blank" rel="noreferrer">Visit <HiArrowNarrowRight style={{marginLeft: '0.5rem'}}/></a>
           </motion.div>
         )
       })}

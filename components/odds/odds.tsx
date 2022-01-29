@@ -1,7 +1,8 @@
 import styles from './odds.module.scss'
-import Bookies from './bookies'
+import dynamic from 'next/dynamic'
 import { Key } from 'react'
 import { motion } from 'framer-motion'
+const Bookies = dynamic(() => import('./bookies'))
 
 const Odds = (props: any) => {
     return (

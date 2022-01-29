@@ -1,7 +1,8 @@
 import styles from './odds.module.scss'
 import { Key } from 'react'
-import Markets from './markets'
+import dynamic from 'next/dynamic'
 import Carousel from 'react-material-ui-carousel'
+const Markets = dynamic(() => import('./markets'))
 
 const Bookies = (props: any) => {
     return (
